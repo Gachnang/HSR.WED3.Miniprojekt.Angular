@@ -9,7 +9,11 @@ const appRoutes: Routes = [
   },
 
   // Welcome module is eagerly loaded.
-  {path: '', redirectTo: '/welcome', pathMatch: 'full'}
+  {
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
