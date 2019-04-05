@@ -14,13 +14,13 @@ import {AuthModule} from './auth/auth.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import {NavigationComponent} from './navigation/navigation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +36,7 @@ import { NavigationComponent } from './navigation/navigation.component';
   providers: [
     {provide: LOCALE_ID, useValue: 'de-CH'}
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { // RootModule

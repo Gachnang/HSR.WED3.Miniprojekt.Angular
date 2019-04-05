@@ -5,7 +5,7 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule',
-    canLoad: [ ] // TODO: Add guard for lazy loaded Dashboard module here...
+    canLoad: [] // TODO: Add guard for lazy loaded Dashboard module here...
   },
 
   // Welcome module is eagerly loaded.
@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/welcome',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({
