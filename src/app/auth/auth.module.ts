@@ -1,4 +1,5 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +31,7 @@ const EXPORTS = [
 @NgModule({
   declarations: INTERNAL_DECLARATIONS,
   imports: [
+    CommonModule,
     FormsModule,
     SharedModule,
     NgbModule

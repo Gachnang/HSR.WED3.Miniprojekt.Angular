@@ -1,20 +1,35 @@
 <!-- TODO: Add ng specific directives/validation settings and add styling -->
 <div class="container col-xs-6">
   <wed-titled-card>
-    <h2 header>Login</h2>
-    <form (ngSubmit)="doLogin(null)" body>
+    <h2>Login</h2>
+    <form data-body (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
       <div class="form-group">
-        <label for="userName">User name:</label>
-        <input type="text" class="form-control" id="userName" aria-describedby="userName" placeholder="User"
-               pattern=".{3,}">
-        <small id="userNameHelp" class="form-text text-muted">Please specify your login, at least three characters.
-        </small>
+        <label for="userName">Benutzername:</label>
+        <input type="text" class="form-control" id="userName" name="userName" aria-describedby="userName" placeholder="Benutzername"
+               [(ngModel)]="login" #userName="ngModel" pattern=".{3,}" required>
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+          <small class="form-text text-muted" *ngIf="userName.errors.required">
+            Benutzername wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="userName.errors.pattern">
+            Benutzername muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
       </div>
       <div class="form-group">
-        <label for="password">User name:</label>
-        <input type="text" class="form-control" id="password" aria-describedby="password" placeholder="Password"
-               pattern=".{3,}">
-        <small id="passwordHelp" class="form-text text-muted">Please specify your login, at least three characters.
+        <label for="password">Passwort:</label>
+        <input type="password" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Passwort"
+               [(ngModel)]="password" #passWord="ngModel" pattern=".{3,}" required>
+        <div *ngIf="passWord.invalid && (passWord.dirty || passWord.touched)">
+          <small class="form-text text-muted" *ngIf="passWord.errors.required">
+            Passwort wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="passWord.errors.pattern">
+            Passwort muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
+        <small class="form-text text-muted" *ngIf="loginForm.submitted && loginForm.form.invalid">
+            Login fehlgeschlagen (Benutzername und Passwort falsch)
         </small>
       </div>
       <div class="form-group">
@@ -23,7 +38,7 @@
             TODO Noch keinen Account?
           </div>
           <div class="col-sm-5 col-push-1">
-            <button type="submit" class="btn btn-primary float-right">Login</button>
+            <button type="submit" class="btn btn-primary float-right" [disabled]="!loginForm.form.valid">Login</button>
           </div>
         </div>
       </div>
