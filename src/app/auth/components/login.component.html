@@ -4,8 +4,8 @@
     <h2>Login</h2>
     <form data-body (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
       <div class="form-group">
-        <label for="userName">Benutzername:</label>
-        <input type="text" class="form-control" id="userName" name="userName" aria-describedby="userName" placeholder="Benutzername"
+        <label for="login">Benutzername:</label>
+        <input type="text" class="form-control" id="login" name="login" aria-describedby="login" placeholder="Benutzername"
                [(ngModel)]="login" #userName="ngModel" pattern=".{3,}" required>
         <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
           <small class="form-text text-muted" *ngIf="userName.errors.required">
