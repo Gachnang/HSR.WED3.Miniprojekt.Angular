@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {RegisterComponent} from './auth/components/register.component';
 
 const appRoutes: Routes = [
   {
@@ -14,6 +15,11 @@ const appRoutes: Routes = [
     redirectTo: '/welcome',
     pathMatch: 'full'
   },
+
+  {
+    path: 'signup',
+    component: RegisterComponent
+  }
 ];
 
 @NgModule({
