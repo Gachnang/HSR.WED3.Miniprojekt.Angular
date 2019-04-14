@@ -1,39 +1,86 @@
 <!-- TODO: Add ng specific directives/validation settings and add styling -->
-<form (ngSubmit)="doRegister(null)">
-  <label>
-    First name:
-    <div>
-      <input pattern=".{2,}" placeholder="First name" type="text" name="firstname">
-      <div>Please specify your first name.</div>
-    </div>
-  </label>
-  <label>
-    Last name:
-    <div>
-      <input pattern=".{2,}" placeholder="Last name" type="text" name="lastname">
-      <div>Please specify your last name.</div>
-    </div>
-  </label>
-  <label>
-    User name:
-    <div>
-      <input pattern=".{3,}" placeholder="User" type="text" name="login">
-      <div>Please specify your login, at least three characters.</div>
-    </div>
-  </label>
-  <label>
-    Password:
-    <div>
-      <input pattern=".{3,}" placeholder="Password" type="password" name="password">
-      <div>Please specify your password, at least three characters.</div>
-    </div>
-  </label>
-  <label>
-    Confirm Password:
-    <div>
-      <input pattern=".{3,}" placeholder="Password" type="password" name="passwordConfirm">
-      <div>Please confirm your password.</div>
-    </div>
-  </label>
-  <button>Register</button>
-</form>
+<div class="container col-xs-6">
+  <wed-titled-card>
+    <h2>Registrieren</h2>
+    <form data-body (ngSubmit)="doRegister(registerForm)" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="firstname">Vorname:</label>
+        <input class="form-control" id="firstname" name="firstname" aria-describedby="firstname" placeholder="Vorname"
+               type="text" [(ngModel)]="firstname" #firstName="ngModel" pattern=".{3,}" required>
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+          <small class="form-text text-muted" *ngIf="firstName.errors.required">
+            Vorname wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="firstName.errors.pattern">
+            Vorname muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Nachname:</label>
+        <input class="form-control" id="lastname" name="lastname" aria-describedby="lastname" placeholder="Nachname"
+               type="text" [(ngModel)]="lastname" #lastName="ngModel" pattern=".{3,}" required>
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+          <small class="form-text text-muted" *ngIf="lastName.errors.required">
+            Nachname wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="lastName.errors.pattern">
+            Nachname muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="login">Benutzername:</label>
+        <input class="form-control" id="login" name="login" aria-describedby="login" placeholder="Benutzername"
+               type="text" [(ngModel)]="login" #userName="ngModel" pattern=".{3,}" required>
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+          <small class="form-text text-muted" *ngIf="userName.errors.required">
+            Benutzername wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="userName.errors.pattern">
+            Benutzername muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Passwort:</label>
+        <input class="form-control" id="password" name="password" aria-describedby="password" placeholder="Passwort"
+               type="password" [(ngModel)]="password" #passWord="ngModel" pattern=".{3,}" required>
+        <div *ngIf="passWord.invalid && (passWord.dirty || passWord.touched)">
+          <small class="form-text text-muted" *ngIf="passWord.errors.required">
+            Passwort wird benötigt.
+          </small>
+          <small class="form-text text-muted" *ngIf="passWord.errors.pattern">
+            Passwort muss mindestens 3 Zeichen lang sein.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="passwordConfirm">Passwort bestätigen:</label>
+        <input class="form-control" id="passwordConfirm" name="passwordConfirm" aria-describedby="passwordConfirm"
+               placeholder="Passwort bestätigen" type="password" ngModel="" #passWordConfirm="ngModel"
+               pattern=".{3,}" required>
+        <small class="form-text text-muted"
+               *ngIf="(passWordConfirm.dirty || passWordConfirm.touched) && passWord.value != passWordConfirm.value">
+          Passwörter stimmen nicht überein.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-5 col-push-1">
+            <button type="submit" class="btn btn-primary float-right"
+                    [disabled]="!registerForm.form.valid || passWord.value != passWordConfirm.value">
+              Registrieren
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </wed-titled-card>
+</div>
+
