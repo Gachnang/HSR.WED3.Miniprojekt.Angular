@@ -5,8 +5,11 @@
     <div class="mr-auto navbar-nav">
       <div class="nav-item"><a routerLink="/" class="nav-link">Home</a></div>
     </div>
-    <div class="navbar-nav">
+    <div class="navbar-nav" *ngIf="!autSvc.hasCredentials">
       <div class="nav-item"><a type="button" class="btn btn-outline-light" routerLink="/signup">Registrieren</a></div>
+    </div>
+    <div class="navbar-nav" *ngIf="autSvc.hasCredentials">
+      <wed-logout></wed-logout>
     </div>
   </div>
 </nav>
