@@ -15,7 +15,7 @@ import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './navigation/navigation.component';
-
+import {TransactionListModule} from './transaction-list/transaction-list.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import {NavigationComponent} from './navigation/navigation.component';
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     WelcomeModule.forRoot(),
+    TransactionListModule.forRoot(),
 
     AppRoutingModule
   ],
