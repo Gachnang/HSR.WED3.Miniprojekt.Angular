@@ -23,31 +23,23 @@ export class TransactionTableComponent implements OnInit {
   }
 
   showYear(year: number) {
-    this.forYear = year;
+    this.forYear = Number(year);
     this.update();
   }
 
   showMonth(month: number) {
-    this.forMonth = month;
+    this.forMonth = Number(month);
     this.update();
   }
 
   private update() {
     if (this.includeDate && this.forYear && this.forMonth) {
-      console.log(this.forYear, this.forMonth);
-
       const fromDate = new Date(this.forYear, this.forMonth, 1).toISOString();
       // The month will wrap around (13 is January)
       const toDate = new Date(this.forYear, this.forMonth + 1, 1).toISOString();
 
-      console.log(fromDate, toDate);
-
       this.transactionsResource.getTransactions(fromDate, toDate, Number.MAX_SAFE_INTEGER)
-        .subscribe(ts => {
-          console.log('ts', ts);
-          this.transactions = ts;
-          console.log(this.transactions.length);
-        });
+        .subscribe(ts => this.transactions = ts);
     } else {
       this.transactionsResource.getTransactions()
         .subscribe(ts => this.transactions = ts);

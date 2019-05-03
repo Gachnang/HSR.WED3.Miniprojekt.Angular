@@ -20,12 +20,16 @@ export class TransactionFilterComponent implements OnInit {
   public monthChanged = new EventEmitter<number>();
 
   constructor() {
+  }
+
+  ngOnInit() {
     const date = new Date();
     this.currentYear = date.getFullYear();
     this.currentMonth = date.getMonth();
     this.years = [this.currentYear, this.currentYear - 1, this.currentYear - 2];
-  }
 
-  ngOnInit() {
+    // Initialize table-component with the initial filter values
+    this.yearChanged.emit(this.currentYear);
+    this.monthChanged.emit(this.currentMonth);
   }
 }
