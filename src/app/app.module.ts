@@ -30,7 +30,6 @@ import {TransactionListModule} from './transaction-list/transaction-list.module'
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     WelcomeModule.forRoot(),
-    TransactionListModule.forRoot(),
 
     AppRoutingModule
   ],

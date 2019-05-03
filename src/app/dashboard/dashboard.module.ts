@@ -1,4 +1,4 @@
-import {NgModule, ModuleWithProviders} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
@@ -7,14 +7,24 @@ import {SharedModule} from '@app/shared';
 import {AuthModule} from '../auth/auth.module';
 
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {TransactionListModule} from '../transaction-list/transaction-list.module';
+import {DashboardComponent} from './components/dashboard.component';
+import {TransactionTableComponent} from '../transaction-list/transaction-table/transaction-table.component';
+import {TransactionListComponent} from '../transaction-list/transaction-list/transaction-list.component';
+import {TransactionFilterComponent} from '../transaction-list/transaction-filter/transaction-filter.component';
+import {TransactionNewComponent} from './components/transaction-new/transaction-new.component';
 
 
 const EXPORTED_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used outside the Module
 ];
 const INTERNAL_DECLARATIONS = [
-  ...EXPORTED_DECLARATIONS
+  ...EXPORTED_DECLARATIONS,
+  DashboardComponent,
+  TransactionTableComponent,
+  TransactionListComponent,
+  TransactionFilterComponent,
+  TransactionNewComponent
+  // TransactionListModule
   // Declarations (Components / Directives) which can be used inside the Module
 ];
 const EXPORTS = [
@@ -30,7 +40,6 @@ const EXPORTS = [
     CommonModule,
     FormsModule,
     AuthModule,
-    TransactionListModule,
     DashboardRoutingModule
   ],
   exports: EXPORTS,

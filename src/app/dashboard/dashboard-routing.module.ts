@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TransactionListComponent} from '../transaction-list/transaction-list/transaction-list.component';
+import {DashboardComponent} from './components/dashboard.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: null, // TODO: Add initial router outlet dashboard component...
     children: [
-      // TODO: Add routing path for dashboard here...
+      {
+        path: '',
+        component: DashboardComponent
+      },
       {
         path: 'transactions',
         component: TransactionListComponent
