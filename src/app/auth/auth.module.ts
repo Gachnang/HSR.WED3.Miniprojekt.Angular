@@ -14,6 +14,7 @@ import {TokenInterceptor} from './resources/token-interceptor';
 import {AuthResourceService} from './resources/auth-resource.service';
 
 import {SecurityTokenStore} from './services/credential-management/security-token-store';
+import {RouterModule} from '@angular/router';
 
 
 const EXPORTED_DECLARATIONS = [
@@ -34,7 +35,8 @@ const EXPORTS = [
     CommonModule,
     FormsModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   exports: EXPORTS,
   providers: [AuthResourceService]
