@@ -10,5 +10,9 @@
                            #table
                            [includeDate]="showFilter">
     </wed-transaction-table>
+    <button data-body
+            *ngIf="!showFilter"
+            class="btn btn-primary"
+            routerLink="/dashboard/transactions">Alle Transaktionen</button>
   </wed-titled-card>
 </div>
