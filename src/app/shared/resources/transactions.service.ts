@@ -30,4 +30,21 @@ export class TransactionsService extends ResourceBase {
         catchError((error: any) => of<Transaction[]>(null))
       );
   }
+
+  public transfer(
+    target: string,
+    amount: number
+  ): Observable<Transaction> {
+    return this.post('/accounts/transactions', {
+      target,
+      amount
+    }).pipe(
+      map((result: any) => {
+        if (result) {
+          return Transaction.fromDto(result);
+        }
+      }),
+      catchError((error: any) => of<Transaction>(null))
+    );
+  }
 }

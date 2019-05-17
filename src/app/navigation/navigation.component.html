@@ -3,7 +3,9 @@
     class="navbar-toggler-icon"></span></button>
   <div class="navbar-collapse collapse">
     <div class="mr-auto navbar-nav">
-      <div class="nav-item"><a routerLink="/" class="nav-link">Home</a></div>
+      <div class="nav-item" *ngIf="!autSvc.hasCredentials"><a routerLink="/" class="nav-link">Home</a></div>
+      <div class="nav-item" *ngIf="autSvc.hasCredentials"><a routerLink="/dashboard" class="nav-link">Dashboard</a></div>
+      <div class="nav-item" *ngIf="autSvc.hasCredentials"><a routerLink="/dashboard/transactions" class="nav-link">Konto Bewegungen</a></div>
     </div>
     <div class="navbar-nav" *ngIf="!autSvc.hasCredentials">
       <div class="nav-item"><a type="button" class="btn btn-outline-light" routerLink="/signup">Registrieren</a></div>
