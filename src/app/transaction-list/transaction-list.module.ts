@@ -4,6 +4,7 @@ import {TransactionTableComponent} from './transaction-table/transaction-table.c
 import {TransactionListComponent} from './transaction-list/transaction-list.component';
 import {TransactionFilterComponent} from './transaction-filter/transaction-filter.component';
 import {SharedModule} from '@app/shared';
+import {RouterModule} from '@angular/router';
 
 const EXPORTED_DECLARATIONS = [
   TransactionTableComponent,
@@ -21,7 +22,8 @@ const EXPORTS = [
   declarations: INTERNAL_DECLARATIONS,
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: EXPORTS,
   providers: []

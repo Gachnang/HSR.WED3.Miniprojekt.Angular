@@ -8,10 +8,8 @@ import {AuthModule} from '../auth/auth.module';
 
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {DashboardComponent} from './components/dashboard.component';
-import {TransactionTableComponent} from '../transaction-list/transaction-table/transaction-table.component';
-import {TransactionListComponent} from '../transaction-list/transaction-list/transaction-list.component';
-import {TransactionFilterComponent} from '../transaction-list/transaction-filter/transaction-filter.component';
 import {TransactionNewComponent} from './components/transaction-new/transaction-new.component';
+import {TransactionListModule} from '../transaction-list/transaction-list.module';
 
 
 const EXPORTED_DECLARATIONS = [
@@ -20,11 +18,7 @@ const EXPORTED_DECLARATIONS = [
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS,
   DashboardComponent,
-  TransactionTableComponent,
-  TransactionListComponent,
-  TransactionFilterComponent,
   TransactionNewComponent
-  // TransactionListModule
   // Declarations (Components / Directives) which can be used inside the Module
 ];
 const EXPORTS = [
@@ -40,7 +34,8 @@ const EXPORTS = [
     CommonModule,
     FormsModule,
     AuthModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    TransactionListModule
   ],
   exports: EXPORTS,
   providers: [
