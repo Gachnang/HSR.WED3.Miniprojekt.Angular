@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Transaction} from '../../shared/models/transaction';
 import {TransactionsService} from '../../shared/resources/transactions.service';
 
@@ -7,7 +7,7 @@ import {TransactionsService} from '../../shared/resources/transactions.service';
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.scss']
 })
-export class TransactionTableComponent implements OnInit {
+export class TransactionTableComponent implements OnInit, OnDestroy {
   public transactions: Transaction[] = [];
 
   @Input() includeDate: boolean;
@@ -15,12 +15,22 @@ export class TransactionTableComponent implements OnInit {
   public forYear?: number = undefined;
   public forMonth?: number = undefined;
 
+  private subscriber: () => void;
+
   constructor(private transactionsResource: TransactionsService) {
   }
 
   ngOnInit() {
     if (!this.includeDate) {
-      this.update();
+      // this.update();
+      this.subscriber = this.transactionsResource.subscribeLastTransactions(
+        (transactions => this.transactions = transactions).bind(this));
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscriber) {
+      this.subscriber();
     }
   }
 
@@ -44,9 +54,6 @@ export class TransactionTableComponent implements OnInit {
         this.transactionsResource.getTransactions(fromDate, toDate, Number.MAX_SAFE_INTEGER)
           .subscribe(ts => this.transactions = ts);
       }
-    } else {
-      this.transactionsResource.getTransactions()
-        .subscribe(ts => this.transactions = ts);
     }
   }
 }

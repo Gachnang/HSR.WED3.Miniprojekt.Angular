@@ -19,11 +19,9 @@ import {RouterModule} from '@angular/router';
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
-  // TODO: Add declarations here, if additional components should be exported
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS
-  // TODO: Add declarations here, if additional components should be registered for the Auth module
 ];
 const EXPORTS = [
   ...EXPORTED_DECLARATIONS
@@ -49,7 +47,6 @@ export class AuthModule {
         // DI Multi-Providers (Services, Tokens, Factories...) to be used globally and instantiated only once.
         // For Single-Providers use {providedIn: 'root'} instead.
 
-        // TODO: Add services/guards/... here or use {providedIn: 'root'} directly on those classes
         SecurityTokenStore,
         {
           provide: HTTP_INTERCEPTORS,

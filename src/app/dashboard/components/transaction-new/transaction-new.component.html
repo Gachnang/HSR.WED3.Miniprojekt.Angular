@@ -1,27 +1,33 @@
 <div class="container col-xs-6">
   <wed-titled-card>
     <h2>Neue Zahlung</h2>
-    <form data-body (ngSubmit)="transfer()">
-      <div class="form-group">
-        <label class="form-label">Von:</label>
-        <input type="text" readonly class="form-control" name="vonInput"
-               [value]="von">
+    <div data-body>
+      <form  (ngSubmit)="transfer()" [hidden]="showResult">
+        <div class="form-group">
+          <label class="form-label">Von:</label>
+          <input type="text" readonly class="form-control" name="vonInput"
+                 [value]="von">
+        </div>
+        <div class="form-group" (invalid)="!zuValid">
+          <label class="form-label">Zu:</label>
+          <input placeholder="Nummer des Zielaccounts" type="text" class="form-control"
+                  [(ngModel)]="zuInput" name="zuInput" (ngModelChange)="validateZu($event)">
+          <small class="text-muted form-text">{{zuMsg}}</small>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Betrag [CHF]</label>
+          <input step="0.05" placeholder="Betrag in CHF" type="number" class="form-control"
+          [(ngModel)]="amountInput" name="amountInput">
+          <small class="text-muted form-text">{{amountMsg}}</small>
+        </div>
+        <div class="form-group">
+          <button [disabled]="!valid" type="submit" class="btn btn-primary">Zahlen</button>
+        </div>
+      </form>
+      <div [hidden]="!showResult">
+        Zahlung erfolgreich getätigt!
+        <button class="btn btn-primary" (click)="showResult=false">Neue Zahlung</button>
       </div>
-      <div class="form-group" (invalid)="!zuValid">
-        <label class="form-label">Zu:</label>
-        <input placeholder="Nummer des Zielaccounts" type="text" class="form-control"
-                [(ngModel)]="zuInput" name="zuInput" (ngModelChange)="validateZu($event)">
-        <small class="text-muted form-text">{{zuMsg}}</small>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Betrag [CHF]</label>
-        <input step="0.05" placeholder="Betrag in CHF" type="number" class="form-control"
-        [(ngModel)]="amountInput" name="amountInput">
-        <small class="text-muted form-text">{{amountMsg}}</small>
-      </div>
-      <div class="form-group">
-        <button [disabled]="!valid" type="submit" class="btn btn-primary">Zahlen</button>
-      </div>
-    </form>
+    </div>
   </wed-titled-card>
 </div>
