@@ -14,17 +14,12 @@ export class TransactionsService extends ResourceBase {
   }
 
   private lastTransactionsSubscriber: ((transactions: Transaction[]) => void)[] = [];
-  private lastTransactionsValue: Transaction[] = [];
 
   public subscribeLastTransactions(subscriber: (transactions: Transaction[]) => void): (() => void) {
     const self = this;
 
     this.lastTransactionsSubscriber.push(subscriber);
-    if (self.lastTransactionsValue.length === 0) {
-      self.updateLastTransactions();
-    } else {
-      subscriber(self.lastTransactionsValue);
-    }
+    self.updateLastTransactions();
 
     return () => {
       self.lastTransactionsSubscriber = self.lastTransactionsSubscriber.filter(s => s === subscriber);
@@ -44,8 +39,7 @@ export class TransactionsService extends ResourceBase {
         }),
         catchError((error: any) => of<Transaction[]>(null))
       ).toPromise().then((result: Transaction[]) => {
-        self.lastTransactionsValue = result;
-        self.lastTransactionsSubscriber.forEach(subscriber => subscriber(result));
+      self.lastTransactionsSubscriber.forEach(subscriber => subscriber(result));
     });
   }
 
